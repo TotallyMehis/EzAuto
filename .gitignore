@@ -1,0 +1,8 @@
+*.sdf
+*.opensdf
+*.suo
+
+build/*
+
+ezauto/*
+!ezauto/readme.txt
