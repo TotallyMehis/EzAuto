@@ -54,6 +54,7 @@ void Core::ReadSettings()
 
 int Core::ListenToProcess()
 {
+    // Get the game section from games.ini
     CSettings_Section* data = CProcess::ListenToProcesses();
 
     if ( !data )
@@ -161,6 +162,7 @@ void Core::JumpLoop( CPlayer_Base* pPlayer )
 
 
         // We have to sleep when sending an input.
+        // Otherwise our game would freeze from trying to read messages.
         if ( pPlayer->GetSleep() )
         {
             pPlayer->SetSleep( false );

@@ -10,7 +10,7 @@ CSettings_Section::CSettings_Section( const char* name )
     SetSectionName( name );
 
 
-    CSystem::PrintDev( "Adding section '%s'\n", ( !name ) ? "N/A" : name );
+    CSystem::PrintDev( "Adding section '%s'\n", ( !name || !*name ) ? "N/A" : name );
 }
 
 CSettings_Section::~CSettings_Section()

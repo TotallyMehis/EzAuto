@@ -64,6 +64,7 @@ CKeyboard::CKeyboard()
 
 bool CKeyboard::GetKey( const char* keyname, CKey* key, bool bAllowBadScancode )
 {
+    // See keylist.h for the list of keys.
     const int len = sizeof g_KeysVirtual / sizeof( g_KeysVirtual[0] );
 
     for ( int i = 0; i < len; i++ )

@@ -28,6 +28,7 @@ bool CSystem::IsFocused()
     return ( GetForegroundWindow() == g_Process.GetGameWindow() );
 }
 
+// Haven't gotten this to work, more testing needed.
 bool CSystem::IsProcessRunning()
 {
     DWORD code;

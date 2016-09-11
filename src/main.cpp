@@ -2,9 +2,6 @@
 #include "settings.h"
 #include "core.h"
 
-#include <iostream>
-
-
 
 int main( int argc, char* argv[] )
 {
