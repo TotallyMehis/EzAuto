@@ -55,6 +55,11 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)ezauto\$(TargetFileName)" /Y
+copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)ezauto\$(TargetName).pdb" /Y
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -72,9 +77,14 @@
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>copy "$(TargetPath)" "$(SolutionDir)$(TargetName)\$(TargetFileName)" /Y
-copy "$(SolutionDir)src\files" "$(SolutionDir)$(TargetName)\" /Y</Command>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)ezauto\$(TargetFileName)" /Y
+copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)ezauto\$(TargetName).pdb" /Y
+</Command>
     </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core.cpp" />

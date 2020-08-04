@@ -4,6 +4,6 @@
 
 build/*
 
-ezauto/*
-!ezauto/readme.txt
+ezauto/*.exe
+ezauto/*.pdb
 .vs
