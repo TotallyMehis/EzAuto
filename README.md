@@ -1,7 +1,7 @@
 # EzAuto
-External autobunnyhop for GoldSrc and Source engine games
+External autobunnyhop for GoldSrc and Source engine games.
 
 
-Built with VS2013.
+Built with VS 2019.
 
 You can download it [here](https://github.com/TotallyMehis/EzAuto/releases "EzAuto Releases").
