@@ -22,6 +22,12 @@ int main( int argc, char* argv[] )
 
     Core::ReadSettings();
 
-
-    return Core::ListenToProcess();
+    while ( true )
+    {
+        auto ret = Core::ListenToProcess();
+        if ( ret != 0 )
+        {
+            return ret;
+        }
+    }
 }

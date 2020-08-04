@@ -129,10 +129,10 @@ void Core::JumpLoop( CPlayer_Base* pPlayer )
 
     while ( true )
     {
-        /*if ( !CSystem::IsProcessRunning() )
+        if ( !CSystem::IsProcessRunning() )
         {
             break;
-        }*/
+        }
 
         if ( g_Keys.PressedPause() )
         {
