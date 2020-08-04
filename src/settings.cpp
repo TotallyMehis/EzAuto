@@ -144,11 +144,11 @@ CSettings* CSettings::OpenFile( const char* filepath )
             }
                 
 
-            CSettings::ParseOption( data, c );
-
 
             if ( n )
             {
+                CSettings::ParseOption( data, c );
+
                 // Jump to the next line.
                 c = n + 1;
             }
@@ -159,14 +159,20 @@ CSettings* CSettings::OpenFile( const char* filepath )
 
 
                 // End of file, just break.
-                if ( feof( file ) ) break;
-
+                if ( feof( file ) )
+                {
+                    CSettings::ParseOption( data, c );
+                    break;
+                }
 
                 size_t linelen = strlen( c );
 
                 // There were no new lines in this buffer. Just break.
-                if ( linelen >= BUFFER_SIZE ) break;
-
+                if ( linelen >= BUFFER_SIZE )
+                {
+                    CSettings::ParseOption( data, c );
+                    break;
+                }
 
                 // Go back to the start of our line to read it fully.
                 fpos_t pos;
