@@ -140,19 +140,23 @@ bool CProcess::ReadMemory( void* pSrc, void* pDest, size_t out_size )
 bool CProcess::WriteMemory( void* pDest, void* pSrc, size_t size )
 {
     DWORD oldprotect;
-    VirtualProtectEx( g_Process.GetProcess(),
-        pDest, sizeof( float ), PAGE_EXECUTE_READWRITE, &oldprotect );
+    VirtualProtectEx( GetProcess(), pDest, size, PAGE_EXECUTE_READWRITE, &oldprotect );
 
     auto res = WriteProcessMemory(
-        g_Process.GetProcess(),
+        GetProcess(),
         pDest,
         pSrc,
         size,
         nullptr );
 
-    VirtualProtectEx( g_Process.GetProcess(), pDest, sizeof( float ), oldprotect, &oldprotect );
+    if ( res == 0 )
+    {
+        CSystem::PrintDev( "Couldn't write to process memory! Error: %i\n", GetLastError() );
+    }
 
-    return res == 0;
+    VirtualProtectEx( GetProcess(), pDest, size, oldprotect, &oldprotect );
+
+    return res != 0;
 }
 
 /*#define DEFAULT_LOOKUP_GAME_GOLDSRC     0x100404A

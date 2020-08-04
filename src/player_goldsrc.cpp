@@ -63,7 +63,7 @@ bool CPlayer_GoldSrc::Init()
 
         if ( !res )
         {
-            CSystem::PrintWarning( "Failed to override BUNNYJUMP_MAX_SPEED_FACTOR! Error: %i", GetLastError() );
+            CSystem::PrintWarning( "Failed to override BUNNYJUMP_MAX_SPEED_FACTOR! Try restarting this.\n" );
         }
     }
 
