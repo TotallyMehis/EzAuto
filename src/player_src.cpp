@@ -70,12 +70,7 @@ bool CPlayer_Source::IsAlive()
 
 bool CPlayer_Source::ReadLocalPlayer()
 {
-    return ReadProcessMemory(
-        g_Process.GetProcess(),
-        (void*)( m_offPlayerBase ),
-        &m_offLocalPlayer,
-        sizeof( offset_t ),
-        nullptr ) != 0;
+    return g_Process.ReadMemory( (void*)( m_offPlayerBase ), &m_offLocalPlayer, sizeof( offset_t ) );
 }
 
 bool CPlayer_Source::ReadMoveType()
@@ -83,23 +78,12 @@ bool CPlayer_Source::ReadMoveType()
     // Just return true if we have no m_MoveType offset.
     if ( m_offMoveType == NULL ) return true;
 
-
-    return ReadProcessMemory(
-        g_Process.GetProcess(),
-        (void*)( m_offLocalPlayer + m_offMoveType ),
-        &m_MoveType,
-        sizeof( int ),
-        nullptr ) != 0;
+    return g_Process.ReadMemory( (void*)( m_offLocalPlayer + m_offMoveType ), &m_MoveType, sizeof( int ) );
 }
 
 bool CPlayer_Source::ReadFlags()
 {
-    return ReadProcessMemory(
-        g_Process.GetProcess(),
-        (void*)( m_offLocalPlayer + m_offFlags ),
-        &m_fFlags,
-        sizeof( int ),
-        nullptr ) != 0;
+    return g_Process.ReadMemory( (void*)( m_offLocalPlayer + m_offFlags ), &m_fFlags, sizeof( int ) );
 }
 
 void CPlayer_Source::Jump()

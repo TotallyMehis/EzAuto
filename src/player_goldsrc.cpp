@@ -59,22 +59,9 @@ bool CPlayer_GoldSrc::Init()
 {
     if ( m_flBunnyHopSpeedFactor >= 0.0f )
     {
-        auto pDest = (void*)( m_offBUNNYJUMP_MAX_SPEED_FACTOR );
+        bool res = g_Process.WriteMemory( (void*)( m_offBUNNYJUMP_MAX_SPEED_FACTOR ), (void*)( &m_flBunnyHopSpeedFactor ), sizeof( float ) );
 
-        DWORD oldprotect;
-        VirtualProtectEx( g_Process.GetProcess(),
-            pDest, sizeof( float ), PAGE_EXECUTE_READWRITE, &oldprotect );
-
-        auto res = WriteProcessMemory(
-            g_Process.GetProcess(),
-            pDest,
-            (void*)( &m_flBunnyHopSpeedFactor ),
-            sizeof( float ),
-            nullptr );
-
-        VirtualProtectEx( g_Process.GetProcess(), pDest, sizeof( float ), oldprotect, &oldprotect );
-
-        if ( res == 0 )
+        if ( !res )
         {
             CSystem::PrintWarning( "Failed to override BUNNYJUMP_MAX_SPEED_FACTOR! Error: %i", GetLastError() );
         }
@@ -101,25 +88,14 @@ bool CPlayer_GoldSrc::IsAlive()
 
 bool CPlayer_GoldSrc::ReadFlags()
 {
-    return ReadProcessMemory(
-        g_Process.GetProcess(),
-        (void*)( m_offFlags ),
-        &m_fFlags,
-        sizeof( int ),
-        nullptr ) != 0;
+    return g_Process.ReadMemory( (void*)( m_offFlags ), &m_fFlags, sizeof( int ) );
 }
 
 bool CPlayer_GoldSrc::ReadMoveType()
 {
     if ( m_offmovetype == NULL ) return true;
 
-
-    return ReadProcessMemory(
-        g_Process.GetProcess(),
-        (void*)( m_offmovetype ),
-        &m_MoveType,
-        sizeof( int ),
-        nullptr ) != 0;
+    return g_Process.ReadMemory( (void*)( m_offmovetype ), &m_MoveType, sizeof( int ) );
 }
 
 void CPlayer_GoldSrc::Jump()

@@ -126,6 +126,34 @@ bool CProcess::OpenProcess( bool bWrite )
     return m_hProcess != NULL;
 }
 
+bool CProcess::ReadMemory( void* pSrc, void* pDest, size_t out_size )
+{
+    return ReadProcessMemory(
+        GetProcess(),
+        pSrc,
+        pDest,
+        out_size,
+        nullptr ) != 0;
+}
+
+bool CProcess::WriteMemory( void* pDest, void* pSrc, size_t size )
+{
+    DWORD oldprotect;
+    VirtualProtectEx( g_Process.GetProcess(),
+        pDest, sizeof( float ), PAGE_EXECUTE_READWRITE, &oldprotect );
+
+    auto res = WriteProcessMemory(
+        g_Process.GetProcess(),
+        pDest,
+        pSrc,
+        size,
+        nullptr );
+
+    VirtualProtectEx( g_Process.GetProcess(), pDest, sizeof( float ), oldprotect, &oldprotect );
+
+    return res == 0;
+}
+
 /*#define DEFAULT_LOOKUP_GAME_GOLDSRC     0x100404A
 
 

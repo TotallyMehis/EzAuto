@@ -14,12 +14,6 @@ class CProcess
 public:
     CProcess();
 
-    bool OpenProcess( const char* name, bool bWrite = false );
-    bool OpenProcess( bool bWrite = false );
-
-    bool SetBaseByModuleName( const char* name );
-
-
     HANDLE GetProcess() { return m_hProcess; };
     DWORD GetProcessId() { return m_dwProcessID; };
 
@@ -28,15 +22,22 @@ public:
     Engine_t GetEngine() { return m_Engine; };
 
 
+    DWORD FindModulePointerByName( const char* name );
+
     static CSettings_Section* ListenToProcesses();
 
+    bool ReadMemory( void* pSrc, void* pDest, size_t size );
+    bool WriteMemory( void* pDest, void* pSrc, size_t size );
+
+private:
+    bool OpenProcess( const char* name, bool bWrite = false );
+    bool OpenProcess( bool bWrite = false );
+
+    bool SetBaseByModuleName( const char* name );
 
 
     bool FindProcessByWindowTitle( const char* name );
 
-    DWORD FindModulePointerByName( const char* name );
-
-private:
     bool FindProcessByName( const char* name, PROCESSENTRY32* process );
 
     HANDLE m_hProcess;
