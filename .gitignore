@@ -6,3 +6,4 @@ build/*
 
 ezauto/*
 !ezauto/readme.txt
+.vs
