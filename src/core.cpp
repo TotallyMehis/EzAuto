@@ -105,6 +105,13 @@ int Core::ListenToProcess()
         return CSystem::ExitWarning( 1, "Couldn't parse game data! Exiting...\n" );
     }
 
+    if ( !pBase->Init() )
+    {
+        delete pBase;
+
+        return CSystem::ExitWarning( 1, "Failed to init player data! Exiting...\n" );
+    }
+
 
     Core::JumpLoop( pBase );
 

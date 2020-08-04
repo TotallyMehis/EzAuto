@@ -96,7 +96,7 @@ DWORD CProcess::FindModulePointerByName( const char* name )
     return NULL;
 }
 
-bool CProcess::OpenProcessForRead( const char* name )
+bool CProcess::OpenProcess( const char* name, bool bWrite )
 {
     PROCESSENTRY32 entry;
 
@@ -108,22 +108,22 @@ bool CProcess::OpenProcessForRead( const char* name )
 
     m_dwProcessID = entry.th32ProcessID;
 
-
-    m_hProcess = OpenProcess( PROCESS_VM_READ, false, m_dwProcessID );
-
-    if ( m_hProcess == INVALID_HANDLE_VALUE )
-    {
-        return false;
-    }
-
-    return true;
+    return OpenProcess( bWrite );
 }
 
-bool CProcess::OpenProcessForRead()
+bool CProcess::OpenProcess( bool bWrite )
 {
-    m_hProcess = OpenProcess( PROCESS_VM_READ, false, m_dwProcessID );
+    DWORD flags = PROCESS_VM_READ;
 
-    return ( m_hProcess != INVALID_HANDLE_VALUE );
+    if ( bWrite )
+    {
+        flags |= PROCESS_VM_WRITE | PROCESS_VM_OPERATION;
+    }
+    
+    m_hProcess = ::OpenProcess( flags, false, m_dwProcessID );
+
+
+    return m_hProcess != NULL;
 }
 
 /*#define DEFAULT_LOOKUP_GAME_GOLDSRC     0x100404A
@@ -190,7 +190,7 @@ CSettings_Section* CProcess::ListenToProcesses()
 
             if ( engine && (eng = Engine::EngineNameToType( engine )) != ENGINE_INVALID )
             {
-                if ( g_Process.OpenProcessForRead() )
+                if ( g_Process.OpenProcess( eng == ENGINE_GOLDSRC ) )
                 {
                     g_Process.m_Engine = eng;
 

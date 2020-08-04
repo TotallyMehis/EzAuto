@@ -14,8 +14,8 @@ class CProcess
 public:
     CProcess();
 
-    bool OpenProcessForRead( const char* name );
-    bool OpenProcessForRead();
+    bool OpenProcess( const char* name, bool bWrite = false );
+    bool OpenProcess( bool bWrite = false );
 
     bool SetBaseByModuleName( const char* name );
 

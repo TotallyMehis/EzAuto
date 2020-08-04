@@ -18,10 +18,11 @@ CPlayer_GoldSrc::CPlayer_GoldSrc()
 {
     m_offFlags = NULL;
     m_offmovetype = NULL;
-
+    m_offBUNNYJUMP_MAX_SPEED_FACTOR = NULL;
 
     m_fFlags = 0;
     m_MoveType = MOVETYPE_WALK;
+    m_flBunnyHopSpeedFactor = -1.0f;
 
     m_bHoldingForWater = false;
 }
@@ -37,10 +38,50 @@ bool CPlayer_GoldSrc::ParseGameData( CSettings_Section* data )
     m_offmovetype = parser->AddOffset( "movetype", data->GetOptionValue( "Offset:movetype" ) );
 
 
+    m_offBUNNYJUMP_MAX_SPEED_FACTOR = parser->AddOffset( "BUNNYJUMP_MAX_SPEED_FACTOR", data->GetOptionValue( "Offset:BUNNYJUMP_MAX_SPEED_FACTOR" ) );
+
     delete parser;
+
+
+    auto* pszSpeedFactor = data->GetOptionValue( "SetMaxSpeedFactor" );
+    if ( pszSpeedFactor )
+    {
+        m_flBunnyHopSpeedFactor = (float)atof( pszSpeedFactor );
+    }
+
+
 
     // movetype is not required.
     return ( m_offFlags != NULL );
+}
+
+bool CPlayer_GoldSrc::Init()
+{
+    if ( m_flBunnyHopSpeedFactor >= 0.0f )
+    {
+        auto pDest = (void*)( m_offBUNNYJUMP_MAX_SPEED_FACTOR );
+
+        DWORD oldprotect;
+        VirtualProtectEx( g_Process.GetProcess(),
+            pDest, sizeof( float ), PAGE_EXECUTE_READWRITE, &oldprotect );
+
+        auto res = WriteProcessMemory(
+            g_Process.GetProcess(),
+            pDest,
+            (void*)( &m_flBunnyHopSpeedFactor ),
+            sizeof( float ),
+            nullptr );
+
+        VirtualProtectEx( g_Process.GetProcess(), pDest, sizeof( float ), oldprotect, &oldprotect );
+
+        if ( res == 0 )
+        {
+            CSystem::PrintWarning( "Failed to override BUNNYJUMP_MAX_SPEED_FACTOR! Error: %i", GetLastError() );
+        }
+    }
+
+
+    return true;
 }
 
 bool CPlayer_GoldSrc::Update()

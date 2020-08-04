@@ -48,6 +48,11 @@ bool CPlayer_Source::ParseGameData( CSettings_Section* data )
     return ( m_offPlayerBase != NULL && m_offFlags != NULL );
 }
 
+bool CPlayer_Source::Init()
+{
+    return true;
+}
+
 bool CPlayer_Source::Update()
 {
     return ( ReadLocalPlayer() && ReadMoveType() );

@@ -17,6 +17,8 @@ public:
 
     virtual bool ParseGameData( CSettings_Section* data ) { return false; }
 
+    virtual bool Init() { return false; }
+
 
     bool GetSleep() { return m_bSleep; }
     void SetSleep( bool value ) { m_bSleep = value; }

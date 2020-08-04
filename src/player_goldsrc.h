@@ -18,6 +18,7 @@ public:
     virtual bool IsActive();
 
     virtual bool ParseGameData( CSettings_Section* data );
+    virtual bool Init();
 
 private:
     bool IsAlive();
@@ -27,9 +28,11 @@ private:
 
     offset_t m_offFlags;
     offset_t m_offmovetype;
+    offset_t m_offBUNNYJUMP_MAX_SPEED_FACTOR;
 
     int m_fFlags;
     int m_MoveType;
+    float m_flBunnyHopSpeedFactor;
 
     bool m_bHoldingForWater;
 };

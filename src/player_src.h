@@ -17,7 +17,7 @@ public:
     virtual bool IsActive();
 
     virtual bool ParseGameData( CSettings_Section* data );
-
+    virtual bool Init();
 
 private:
     bool IsAlive();
