@@ -27,21 +27,21 @@ public:
 
 
     // Will null value if option is not found.
-    bool GetOptionValue( const char* name, char* value, size_t len = 0 );
+    bool GetOptionValue( const char* name, char* value, size_t len = 0 ) const;
 
-    const char* GetOptionValue( const char* name );
-
-
-    int GetOptionIndex( const char* name );
+    const char* GetOptionValue( const char* name ) const;
 
 
+    int GetOptionIndex( const char* name ) const;
 
-    bool GetSectionName( char* name, size_t len );
-    const char* GetSectionName() { return m_pszSectionName; }
+
+
+    bool GetSectionName( char* name, size_t len ) const;
+    const char* GetSectionName() const { return m_pszSectionName; }
 
     void SetSectionName( const char* name );
 
-    bool HasValidName() { return m_pszSectionName != nullptr; }
+    bool HasValidName() const { return m_pszSectionName != nullptr; }
 
 
 private:

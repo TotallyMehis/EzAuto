@@ -15,13 +15,13 @@ public:
 
     virtual void Jump();
 
-    virtual bool IsActive();
+    virtual bool IsActive() const;
 
     virtual bool ParseGameData( CSettings_Section* data );
     virtual bool Init();
 
 private:
-    bool IsAlive();
+    bool IsAlive() const;
 
     bool ReadFlags();
     bool ReadMoveType();

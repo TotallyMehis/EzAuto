@@ -58,12 +58,12 @@ bool CPlayer_Source::Update()
     return ( ReadLocalPlayer() && ReadMoveType() );
 }
 
-bool CPlayer_Source::IsActive()
+bool CPlayer_Source::IsActive() const
 {
     return IsAlive();
 }
 
-bool CPlayer_Source::IsAlive()
+bool CPlayer_Source::IsAlive() const
 {
     return ( m_MoveType == MOVETYPE_WALK || m_MoveType == MOVETYPE_LADDER );
 }

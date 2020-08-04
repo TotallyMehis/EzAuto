@@ -14,16 +14,16 @@ public:
     CKey();
 
 
-    bool IsValidVirtual() { return ( m_Virtual != INVALID_KEY ); }
-    bool IsValidScancode() { return ( m_Scancode != INVALID_KEY ); }
+    bool IsValidVirtual() const { return ( m_Virtual != INVALID_KEY ); }
+    bool IsValidScancode() const { return ( m_Scancode != INVALID_KEY ); }
 
     void Reset();
 
     void SetKey( key_t virtualkey, inputtype_t inputtype, bool bAllowBadScancode = true );
 
-    key_t GetVirtual() { return m_Virtual; }
-    key_t GetScancode() { return m_Scancode; }
-    inputtype_t GetInputType() { return m_InputType; }
+    key_t GetVirtual() const { return m_Virtual; }
+    key_t GetScancode() const { return m_Scancode; }
+    inputtype_t GetInputType() const { return m_InputType; }
 
 private:
     key_t m_Virtual;
@@ -43,17 +43,17 @@ public:
     static bool GetKey( const char* keyname, CKey* key, bool bAllowBadScancode = true );
 
 
-    CKey GetJumpKey() { return m_keyJump; };
+    CKey GetJumpKey() const { return m_keyJump; };
     bool SetJumpKey( const char* name );
 
-    CKey GetHoldKey() { return m_keyHold; };
+    CKey GetHoldKey() const { return m_keyHold; };
     bool SetHoldKey( const char* name );
 
 
-    CKey GetPauseKey() { return m_keyPause; };
+    CKey GetPauseKey() const { return m_keyPause; };
     bool SetPauseKey( const char* name );
 
-    bool PressedPause();
+    bool PressedPause() const;
 
 
     void SendJump();

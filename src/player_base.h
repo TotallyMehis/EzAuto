@@ -11,7 +11,7 @@ class CPlayer_Base
 public:
     virtual bool Update() { return true; }
 
-    virtual bool IsActive() { return true; }
+    virtual bool IsActive() const { return true; }
 
     virtual void Jump() {}
 
@@ -20,7 +20,7 @@ public:
     virtual bool Init() { return false; }
 
 
-    bool GetSleep() { return m_bSleep; }
+    bool GetSleep() const { return m_bSleep; }
     void SetSleep( bool value ) { m_bSleep = value; }
 
 protected:

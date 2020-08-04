@@ -174,7 +174,7 @@ bool CKeyboard::IsHoldingJump()
     return ( GetKeyState( m_keyHold.GetVirtual() ) & KEYDOWN ) ? true : false;
 }
 
-bool CKeyboard::PressedPause()
+bool CKeyboard::PressedPause() const
 {
     if ( !m_keyPause.IsValidVirtual() ) return false;
 

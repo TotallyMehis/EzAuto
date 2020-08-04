@@ -55,7 +55,7 @@ offset_t COffsetParser::AddOffset( const char* name, offset_t offset )
     return off->GetOffset();
 }
 
-int COffsetParser::FindOffset( const char* name, offset_t* offset )
+int COffsetParser::FindOffset( const char* name, offset_t* offset ) const
 {
     for ( size_t i = 0; i < m_Offsets.size(); i++ )
     {

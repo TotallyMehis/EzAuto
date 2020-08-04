@@ -192,7 +192,7 @@ CSettings* CSettings::OpenFile( const char* filepath )
     return data;
 }
 
-const char* CSettings::FindOption( const char* name )
+const char* CSettings::FindOption( const char* name ) const
 {
     for ( size_t i = 0; i < data.size(); i++ )
     {
@@ -204,7 +204,7 @@ const char* CSettings::FindOption( const char* name )
     return nullptr;
 }
 
-bool CSettings::FindOption( const char* name, char* value, size_t len )
+bool CSettings::FindOption( const char* name, char* value, size_t len ) const
 {
     for ( size_t i = 0; i < data.size(); i++ )
     {

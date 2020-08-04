@@ -45,7 +45,7 @@ void CSettings_Section::InsertOption( const char* name, const char* value )
     m_Options.push_back( option );
 }
 
-bool CSettings_Section::GetOptionValue( const char* name, char* value, size_t len )
+bool CSettings_Section::GetOptionValue( const char* name, char* value, size_t len ) const
 {
     int index = GetOptionIndex( name );
     if ( index != -1 )
@@ -66,7 +66,7 @@ bool CSettings_Section::GetOptionValue( const char* name, char* value, size_t le
     return false;
 }
 
-const char* CSettings_Section::GetOptionValue( const char* name )
+const char* CSettings_Section::GetOptionValue( const char* name ) const
 {
     int index = GetOptionIndex( name );
     if ( index != -1 )
@@ -77,7 +77,7 @@ const char* CSettings_Section::GetOptionValue( const char* name )
     return nullptr;
 }
 
-int CSettings_Section::GetOptionIndex( const char* name )
+int CSettings_Section::GetOptionIndex( const char* name ) const
 {
     for ( size_t i = 0; i < m_Options.size(); i++ )
     {
@@ -91,7 +91,7 @@ int CSettings_Section::GetOptionIndex( const char* name )
     return -1;
 }
 
-bool CSettings_Section::GetSectionName( char* name, size_t len )
+bool CSettings_Section::GetSectionName( char* name, size_t len ) const
 {
     if ( name && len )
     {

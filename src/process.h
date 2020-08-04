@@ -14,15 +14,15 @@ class CProcess
 public:
     CProcess();
 
-    HANDLE GetProcess() { return m_hProcess; };
-    DWORD GetProcessId() { return m_dwProcessID; };
+    HANDLE GetProcess() const { return m_hProcess; };
+    DWORD GetProcessId() const { return m_dwProcessID; };
 
-    HWND GetGameWindow() { return m_hWndGame; };
+    HWND GetGameWindow() const { return m_hWndGame; };
 
-    Engine_t GetEngine() { return m_Engine; };
+    Engine_t GetEngine() const { return m_Engine; };
 
 
-    DWORD FindModulePointerByName( const char* name );
+    DWORD FindModulePointerByName( const char* name ) const;
 
     static CSettings_Section* ListenToProcesses();
 
@@ -38,7 +38,7 @@ private:
 
     bool FindProcessByWindowTitle( const char* name );
 
-    bool FindProcessByName( const char* name, PROCESSENTRY32* process );
+    bool FindProcessByName( const char* name, PROCESSENTRY32* process ) const;
 
     HANDLE m_hProcess;
     DWORD m_dwProcessID;

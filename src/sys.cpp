@@ -136,12 +136,12 @@ void CSystem::SetCmdLine( char* cmds[], int cmdnum )
     m_nCmdArgs = cmdnum;
 }
 
-bool CSystem::HasCmdLine( const char* name )
+bool CSystem::HasCmdLine( const char* name ) const
 {
     return ( GetCmdPos( name ) != -1 );
 }
 
-int CSystem::GetCmdPos( const char* name )
+int CSystem::GetCmdPos( const char* name ) const
 {
     for ( int i = 0; i < m_nCmdArgs; i++ )
     {
@@ -154,7 +154,7 @@ int CSystem::GetCmdPos( const char* name )
     return -1;
 }
 
-bool CSystem::GetCmdValue( const char* name, char* value, size_t len )
+bool CSystem::GetCmdValue( const char* name, char* value, size_t len ) const
 {
     if ( !value || !len ) return false;
 

@@ -41,12 +41,12 @@ public:
 
     void SetCmdLine( char* cmds[], int cmdnum );
 
-    bool HasCmdLine( const char* name );
+    bool HasCmdLine( const char* name ) const;
 
-    bool GetCmdValue( const char* name, char* value, size_t len );
+    bool GetCmdValue( const char* name, char* value, size_t len ) const;
 
 private:
-    int GetCmdPos( const char* name );
+    int GetCmdPos( const char* name ) const;
 
 
     char** m_szCmds;

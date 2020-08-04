@@ -10,11 +10,12 @@ CProcess::CProcess()
 {
     m_hProcess = INVALID_HANDLE_VALUE;
     m_dwProcessID = 0;
+    m_hWndGame = NULL;
 
     m_Engine = ENGINE_INVALID;
 }
 
-bool CProcess::FindProcessByName( const char* name, PROCESSENTRY32* process )
+bool CProcess::FindProcessByName( const char* name, PROCESSENTRY32* process ) const
 {
     // Create snapshot that holds all processes.
     HANDLE hSnap = CreateToolhelp32Snapshot( TH32CS_SNAPPROCESS, 0 );
@@ -55,7 +56,7 @@ bool CProcess::FindProcessByName( const char* name, PROCESSENTRY32* process )
     return false;
 }
 
-DWORD CProcess::FindModulePointerByName( const char* name )
+DWORD CProcess::FindModulePointerByName( const char* name ) const
 {
     // Create snapshot that holds all process' modules.
     HANDLE hSnap = CreateToolhelp32Snapshot( TH32CS_SNAPMODULE, m_dwProcessID );

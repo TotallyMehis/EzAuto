@@ -17,7 +17,7 @@ public:
     offset_t AddOffset( const char* name, const char* offset );
     offset_t AddOffset( const char* name, offset_t offset );
 
-    int FindOffset( const char* name, offset_t* offset = nullptr );
+    int FindOffset( const char* name, offset_t* offset = nullptr ) const;
 
 private:
     std::vector<COffset*> m_Offsets;

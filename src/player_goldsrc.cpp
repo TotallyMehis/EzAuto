@@ -76,12 +76,12 @@ bool CPlayer_GoldSrc::Update()
     return ReadMoveType();
 }
 
-bool CPlayer_GoldSrc::IsActive()
+bool CPlayer_GoldSrc::IsActive() const
 {
     return IsAlive();
 }
 
-bool CPlayer_GoldSrc::IsAlive()
+bool CPlayer_GoldSrc::IsAlive() const
 {
     return ( m_MoveType != MOVETYPE_NONE );
 }

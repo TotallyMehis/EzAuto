@@ -12,8 +12,8 @@ public:
 
     void Parse( const char* offset );
 
-    const char* GetName() { return m_pszName; }
-    offset_t GetOffset() { return m_off; }
+    const char* GetName() const { return m_pszName; }
+    offset_t GetOffset() const { return m_off; }
 
 private:
     void SetName( const char* name );

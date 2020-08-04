@@ -24,8 +24,8 @@ public:
 
     void CreateSection( const char* name );
 
-    const char* FindOption( const char* name );
-    bool FindOption( const char* name, char* value, size_t len );
+    const char* FindOption( const char* name ) const;
+    bool FindOption( const char* name, char* value, size_t len ) const;
 
     
     void RemoveSection( size_t index );
