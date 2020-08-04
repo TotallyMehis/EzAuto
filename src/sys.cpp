@@ -52,8 +52,9 @@ void CSystem::Print( const char* format, ... )
 
 void CSystem::PrintVerbose( const char* format, ... )
 {
+#ifndef _DEBUG
     if ( !g_System.HasCmdLine( "-verbose" ) ) return;
-
+#endif
 
     char msg[VA_BUFFER_SIZE];
 
@@ -69,8 +70,9 @@ void CSystem::PrintVerbose( const char* format, ... )
 
 void CSystem::PrintDev( const char* format, ... )
 {
+#ifndef _DEBUG
     if ( !g_System.HasCmdLine( "-dev" ) ) return;
-
+#endif
 
     char msg[VA_BUFFER_SIZE];
 
