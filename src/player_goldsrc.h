@@ -11,14 +11,14 @@ public:
     CPlayer_GoldSrc();
 
 
-    virtual bool Update();
+    virtual bool Update() override;
 
-    virtual void Jump();
+    virtual void Jump() override;
 
-    virtual bool IsActive() const;
+    virtual bool IsActive() const override;
 
-    virtual bool ParseGameData( CSettings_Section* data );
-    virtual bool Init();
+    virtual bool ParseGameData( const CSettings_Section* data ) override;
+    virtual bool Init() override;
 
 private:
     bool IsAlive() const;

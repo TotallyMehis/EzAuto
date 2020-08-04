@@ -189,7 +189,7 @@ bool CProcess::FindProcessByWindowTitle( const char* name )
     return false;
 }
 
-CSettings_Section* CProcess::ListenToProcesses()
+const CSettings_Section* CProcess::ListenToProcesses()
 {
     CSystem::ChangeColor( CCLR_CYAN );
     CSystem::Print( "Listening to games...\n" );

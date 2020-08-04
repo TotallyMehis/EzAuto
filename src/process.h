@@ -24,7 +24,7 @@ public:
 
     DWORD FindModulePointerByName( const char* name ) const;
 
-    static CSettings_Section* ListenToProcesses();
+    static const CSettings_Section* ListenToProcesses();
 
     bool ReadMemory( void* pSrc, void* pDest, size_t size );
     bool WriteMemory( void* pDest, void* pSrc, size_t size );

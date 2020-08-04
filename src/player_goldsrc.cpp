@@ -27,7 +27,7 @@ CPlayer_GoldSrc::CPlayer_GoldSrc()
     m_bHoldingForWater = false;
 }
 
-bool CPlayer_GoldSrc::ParseGameData( CSettings_Section* data )
+bool CPlayer_GoldSrc::ParseGameData( const CSettings_Section* data )
 {
     COffsetParser* parser = new COffsetParser();
 

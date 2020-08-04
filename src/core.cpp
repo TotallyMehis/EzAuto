@@ -55,7 +55,7 @@ void Core::ReadSettings()
 int Core::ListenToProcess()
 {
     // Get the game section from games.ini
-    CSettings_Section* data = CProcess::ListenToProcesses();
+    const CSettings_Section* data = CProcess::ListenToProcesses();
 
     if ( !data )
     {

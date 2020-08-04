@@ -28,7 +28,7 @@ CPlayer_Source::CPlayer_Source()
     m_bHoldingForWater = false;
 }
 
-bool CPlayer_Source::ParseGameData( CSettings_Section* data )
+bool CPlayer_Source::ParseGameData( const CSettings_Section* data )
 {
     COffsetParser* parser = new COffsetParser();
 

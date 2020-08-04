@@ -15,7 +15,7 @@ public:
 
     virtual void Jump() {}
 
-    virtual bool ParseGameData( CSettings_Section* data ) { return false; }
+    virtual bool ParseGameData( const CSettings_Section* data ) { return false; }
 
     virtual bool Init() { return false; }
 
