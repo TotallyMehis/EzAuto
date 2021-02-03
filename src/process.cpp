@@ -118,7 +118,7 @@ bool CProcess::OpenProcess( bool bWrite )
 
     if ( bWrite )
     {
-        flags |= PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_QUERY_INFORMATION;
+        flags |= PROCESS_VM_WRITE | PROCESS_VM_OPERATION;
     }
     
     m_hProcess = ::OpenProcess( flags, false, m_dwProcessID );
