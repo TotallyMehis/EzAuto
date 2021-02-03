@@ -114,11 +114,11 @@ bool CProcess::OpenProcess( const char* name, bool bWrite )
 
 bool CProcess::OpenProcess( bool bWrite )
 {
-    DWORD flags = PROCESS_VM_READ;
+    DWORD flags = PROCESS_VM_READ | PROCESS_QUERY_INFORMATION;
 
     if ( bWrite )
     {
-        flags |= PROCESS_VM_WRITE | PROCESS_VM_OPERATION;
+        flags |= PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_QUERY_INFORMATION;
     }
     
     m_hProcess = ::OpenProcess( flags, false, m_dwProcessID );
