@@ -1,6 +1,7 @@
 #include "player_goldsrc.h"
 #include "process.h"
 #include "keys.h"
+#include "core.h"
 #include "offsetparser.h"
 
 
@@ -43,11 +44,7 @@ bool CPlayer_GoldSrc::ParseGameData( const CSettings_Section* data )
     delete parser;
 
 
-    auto* pszSpeedFactor = data->GetOptionValue( "SetMaxSpeedFactor" );
-    if ( pszSpeedFactor )
-    {
-        m_flBunnyHopSpeedFactor = (float)atof( pszSpeedFactor );
-    }
+    m_flBunnyHopSpeedFactor = g_Core.CS16_MaxSpeedFactor();
 
 
 
@@ -64,6 +61,10 @@ bool CPlayer_GoldSrc::Init()
         if ( !res )
         {
             CSystem::PrintWarning( "Failed to override BUNNYJUMP_MAX_SPEED_FACTOR! Try restarting this.\n" );
+        }
+        else
+        {
+            CSystem::PrintDev( "Changed BUNNYJUMP_MAX_SPEED_FACTOR to %.1f!\n", m_flBunnyHopSpeedFactor );
         }
     }
 

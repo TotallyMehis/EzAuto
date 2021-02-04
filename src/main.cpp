@@ -20,11 +20,11 @@ int main( int argc, char* argv[] )
     }
 
 
-    Core::ReadSettings();
+    g_Core.Init();
 
     while ( true )
     {
-        auto ret = Core::ListenToProcess();
+        auto ret = g_Core.ListenToProcess();
         if ( ret != 0 )
         {
             return ret;

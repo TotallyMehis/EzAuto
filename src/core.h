@@ -6,11 +6,25 @@
 #define GAMEDATA_FILE       "games.ini"
 #define SETTINGS_FILE       "settings.ini"
 
-namespace Core
+class CCore
 {
+public:
+    CCore();
+    virtual ~CCore() {}
+
+    void Init();
     int ListenToProcess();
 
+    float CS16_MaxSpeedFactor() const { return m_flBunnyHopSpeedFactor; }
+
+private:
     void ReadSettings();
 
-    void JumpLoop( CPlayer_Base* );
-}
+    void JumpLoop( CPlayer_Base* pPlayer );
+
+
+    float m_flBunnyHopSpeedFactor;
+};
+
+extern CCore g_Core;
+

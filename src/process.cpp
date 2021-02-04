@@ -1,6 +1,7 @@
 #include "settings.h"
 #include "process.h"
 #include "engine.h"
+#include "core.h"
 
 
 CProcess g_Process;
@@ -119,6 +120,8 @@ bool CProcess::OpenProcess( bool bWrite )
     if ( bWrite )
     {
         flags |= PROCESS_VM_WRITE | PROCESS_VM_OPERATION;
+
+        CSystem::PrintWarning( "Opening process for writing!\n" );
     }
     
     m_hProcess = ::OpenProcess( flags, false, m_dwProcessID );
@@ -223,7 +226,8 @@ const CSettings_Section* CProcess::ListenToProcesses()
 
             if ( engine && (eng = Engine::EngineNameToType( engine )) != ENGINE_INVALID )
             {
-                if ( g_Process.OpenProcess( eng == ENGINE_GOLDSRC ) )
+                // Open for write if on GoldSrc and wants max speed factor changed.
+                if ( g_Process.OpenProcess( eng == ENGINE_GOLDSRC && g_Core.CS16_MaxSpeedFactor() >= 0.0f ) )
                 {
                     g_Process.m_Engine = eng;
 

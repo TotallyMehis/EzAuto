@@ -7,7 +7,20 @@
 #include "player_src.h"
 
 
-void Core::ReadSettings()
+CCore g_Core;
+
+
+CCore::CCore()
+{
+    m_flBunnyHopSpeedFactor = -1.0f;
+}
+
+void CCore::Init()
+{
+    ReadSettings();
+}
+
+void CCore::ReadSettings()
 {
     char temp[32];
 
@@ -20,8 +33,7 @@ void Core::ReadSettings()
     // Read our file.
     CSettings* settings = CSettings::OpenFile( SETTINGS_FILE );
 
-
-    if ( settings && !g_Keys.GetPauseKey().IsValidVirtual() && settings->FindOption( "PauseKey", temp, sizeof temp ) )
+    if ( settings && !g_Keys.GetPauseKey().IsValidVirtual() && settings->FindOption( "PauseKey", temp, sizeof( temp ) ) )
     {
         g_Keys.SetPauseKey( temp );
     }
@@ -30,7 +42,7 @@ void Core::ReadSettings()
         g_Keys.SetPauseKey( "f11" );
     }
 
-    if ( settings && !g_Keys.GetHoldKey().IsValidVirtual() && settings->FindOption( "HoldKey", temp, sizeof temp ) )
+    if ( settings && !g_Keys.GetHoldKey().IsValidVirtual() && settings->FindOption( "HoldKey", temp, sizeof( temp ) ) )
     {
         g_Keys.SetHoldKey( temp );
     }
@@ -39,7 +51,7 @@ void Core::ReadSettings()
         g_Keys.SetHoldKey( "space" );
     }
 
-    if ( settings && !g_Keys.GetJumpKey().IsValidScancode() && settings->FindOption( "JumpKey", temp, sizeof temp ) )
+    if ( settings && !g_Keys.GetJumpKey().IsValidScancode() && settings->FindOption( "JumpKey", temp, sizeof( temp ) ) )
     {
         g_Keys.SetJumpKey( temp );
     }
@@ -48,11 +60,15 @@ void Core::ReadSettings()
         g_Keys.SetJumpKey( "v" );
     }
 
+    if ( settings && settings->FindOption( "SetMaxSpeedFactor", temp, sizeof( temp ) ) )
+    {
+        m_flBunnyHopSpeedFactor = (float)atof( temp );
+    }
 
     delete settings;
 }
 
-int Core::ListenToProcess()
+int CCore::ListenToProcess()
 {
     // Get the game section from games.ini
     const CSettings_Section* data = CProcess::ListenToProcesses();
@@ -113,13 +129,13 @@ int Core::ListenToProcess()
     }
 
 
-    Core::JumpLoop( pBase );
+    CCore::JumpLoop( pBase );
 
 
     return 0;
 }
 
-void Core::JumpLoop( CPlayer_Base* pPlayer )
+void CCore::JumpLoop( CPlayer_Base* pPlayer )
 {
     if ( !pPlayer ) return;
 
