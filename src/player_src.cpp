@@ -30,23 +30,21 @@ CPlayer_Source::CPlayer_Source()
 
 bool CPlayer_Source::ParseGameData( const CSettings_Section* data )
 {
-    COffsetParser* parser = new COffsetParser();
+    COffsetParser parser;
 
     auto* pszLocalPlayerPointer = data->GetOptionValue( "Offset:LocalPlayerPointer" );
     // Fallback to old value
     if ( !pszLocalPlayerPointer )
         pszLocalPlayerPointer = data->GetOptionValue( "Offset:PlayerBase" );
     
-    m_offLocalPlayerPointer = parser->AddOffset( "LocalPlayerPointer", pszLocalPlayerPointer );
+    m_offLocalPlayerPointer = parser.AddOffset( "LocalPlayerPointer", pszLocalPlayerPointer );
 
 
-    m_offFlags = parser->AddOffset( "m_fFlags", data->GetOptionValue( "Offset:m_fFlags" ) );
+    m_offFlags = parser.AddOffset( "m_fFlags", data->GetOptionValue( "Offset:m_fFlags" ) );
 
 
-    m_offMoveType = parser->AddOffset( "m_MoveType", data->GetOptionValue( "Offset:m_MoveType" ) );
+    m_offMoveType = parser.AddOffset( "m_MoveType", data->GetOptionValue( "Offset:m_MoveType" ) );
 
-
-    delete parser;
 
     // m_lifeState is not required.
     return ( m_offLocalPlayerPointer != NULL && m_offFlags != NULL );

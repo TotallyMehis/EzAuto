@@ -30,18 +30,16 @@ CPlayer_GoldSrc::CPlayer_GoldSrc()
 
 bool CPlayer_GoldSrc::ParseGameData( const CSettings_Section* data )
 {
-    COffsetParser* parser = new COffsetParser();
+    COffsetParser parser;
 
 
-    m_offFlags = parser->AddOffset( "flags", data->GetOptionValue( "Offset:flags" ) );
+    m_offFlags = parser.AddOffset( "flags", data->GetOptionValue( "Offset:flags" ) );
 
     
-    m_offmovetype = parser->AddOffset( "movetype", data->GetOptionValue( "Offset:movetype" ) );
+    m_offmovetype = parser.AddOffset( "movetype", data->GetOptionValue( "Offset:movetype" ) );
 
 
-    m_offBUNNYJUMP_MAX_SPEED_FACTOR = parser->AddOffset( "BUNNYJUMP_MAX_SPEED_FACTOR", data->GetOptionValue( "Offset:BUNNYJUMP_MAX_SPEED_FACTOR" ) );
-
-    delete parser;
+    m_offBUNNYJUMP_MAX_SPEED_FACTOR = parser.AddOffset( "BUNNYJUMP_MAX_SPEED_FACTOR", data->GetOptionValue( "Offset:BUNNYJUMP_MAX_SPEED_FACTOR" ) );
 
 
     m_flBunnyHopSpeedFactor = g_Core.CS16_MaxSpeedFactor();
