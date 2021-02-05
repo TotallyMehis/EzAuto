@@ -25,9 +25,9 @@ void CCore::ReadSettings()
     char temp[32];
 
     // Read commandline settings...
-    if ( g_System.GetCmdValue( "-pausekey", temp, sizeof temp ) ) g_Keys.SetPauseKey( temp );
-    if ( g_System.GetCmdValue( "-holdkey", temp, sizeof temp ) ) g_Keys.SetHoldKey( temp );
-    if ( g_System.GetCmdValue( "-jumpkey", temp, sizeof temp ) ) g_Keys.SetJumpKey( temp );
+    if ( g_System.GetCmdValue( "-pausekey", temp, sizeof( temp ) ) ) g_Keys.SetPauseKey( temp );
+    if ( g_System.GetCmdValue( "-holdkey", temp, sizeof( temp ) ) ) g_Keys.SetHoldKey( temp );
+    if ( g_System.GetCmdValue( "-jumpkey", temp, sizeof( temp ) ) ) g_Keys.SetJumpKey( temp );
 
 
     // Read our file.
@@ -82,7 +82,7 @@ int CCore::ListenToProcess()
     char name[64];
     if ( !data->GetSectionName( name, sizeof( name ) ) || !strlen( name ) )
     {
-        strcpy_s( name, sizeof name, "N/A" );
+        strcpy_s( name, sizeof( name ), "N/A" );
     }
 
 

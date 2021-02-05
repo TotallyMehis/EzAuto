@@ -52,7 +52,7 @@ void COffset::Parse( const char* offset )
 {
     char temp[92];
 
-    strcpy_s( temp, sizeof temp, offset );
+    strcpy_s( temp, sizeof( temp ), offset );
 
 
 

@@ -176,10 +176,10 @@ void CProcess::LookupGame( DWORD offset )
         m_hProcess,
         (PBYTE*)( m_dwBase + offset ),
         &m_szGame,
-        sizeof m_szGame,
+        sizeof( m_szGame ),
         NULL );
 
-    m_szGame[sizeof m_szGame - 1] = 0;
+    m_szGame[sizeof( m_szGame ) - 1] = 0;
 }*/
 
 bool CProcess::FindProcessByWindowTitle( const char* name )

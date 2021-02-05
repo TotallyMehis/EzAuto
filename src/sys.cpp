@@ -11,7 +11,7 @@
 
 #define HANDLE_VARIADIC(a)  va_list args; \
                             va_start( args, format ); \
-                            vsprintf_s( a, sizeof a, format, args ); \
+                            vsprintf_s( a, sizeof( a ), format, args ); \
                             va_end( args ); \
 
 
