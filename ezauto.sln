@@ -1,22 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ezauto", "ezauto.vcxproj", "{8871D935-56B1-494E-B794-724929590671}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8871D935-56B1-494E-B794-724929590671}.Debug|Win32.ActiveCfg = Debug|Win32
 		{8871D935-56B1-494E-B794-724929590671}.Debug|Win32.Build.0 = Debug|Win32
+		{8871D935-56B1-494E-B794-724929590671}.Debug|x64.ActiveCfg = Debug|x64
+		{8871D935-56B1-494E-B794-724929590671}.Debug|x64.Build.0 = Debug|x64
 		{8871D935-56B1-494E-B794-724929590671}.Release|Win32.ActiveCfg = Release|Win32
 		{8871D935-56B1-494E-B794-724929590671}.Release|Win32.Build.0 = Release|Win32
+		{8871D935-56B1-494E-B794-724929590671}.Release|x64.ActiveCfg = Release|x64
+		{8871D935-56B1-494E-B794-724929590671}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F508C327-EB97-48F7-988A-B39CE62C965F}
 	EndGlobalSection
 EndGlobal

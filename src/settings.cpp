@@ -23,7 +23,7 @@ void CSettings::CreateSection( const char* name )
     // If not, make new section part of it and just update the name.
     if ( name && *name )
     {
-        int prev = data.size() - 1;
+        int prev = (int)data.size() - 1;
 
         if ( prev >= 0 && !data[prev]->HasValidName() )
         {
@@ -70,7 +70,7 @@ void CSettings::ParseOption( CSettings* data, const char* src )
 
     *c = 0;
 
-    int target = data->data.size() - 1;
+    int target = (int)data->data.size() - 1;
 
     // We must have a section to put this into!
     // Create an empty section.
@@ -78,7 +78,7 @@ void CSettings::ParseOption( CSettings* data, const char* src )
     {
         data->CreateSection( nullptr );
 
-        target = data->data.size() - 1;
+        target = (int)data->data.size() - 1;
     }
 
     

@@ -83,7 +83,7 @@ int CSettings_Section::GetOptionIndex( const char* name ) const
     {
         if ( _stricmp( name, m_Options[i]->GetName() ) == 0 )
         {
-            return i;
+            return (int)i;
         }
     }
 

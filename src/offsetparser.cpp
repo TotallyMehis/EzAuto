@@ -66,7 +66,7 @@ int COffsetParser::FindOffset( const char* name, offset_t* offset ) const
                 *offset = m_Offsets[i]->GetOffset();
             }
 
-            return i;
+            return (int)i;
         }
     }
 

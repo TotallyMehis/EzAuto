@@ -60,7 +60,7 @@ bool CProcess::FindProcessByName( const char* name, PROCESSENTRY32* process ) co
 DWORD CProcess::FindModulePointerByName( const char* name ) const
 {
     // Create snapshot that holds all process' modules.
-    HANDLE hSnap = CreateToolhelp32Snapshot( TH32CS_SNAPMODULE, m_dwProcessID );
+    HANDLE hSnap = CreateToolhelp32Snapshot( TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, m_dwProcessID );
     if ( hSnap == INVALID_HANDLE_VALUE ) return NULL;
 
 

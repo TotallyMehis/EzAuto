@@ -7,9 +7,21 @@
     <LocalDebuggerWorkingDirectory>$(SolutionDir)ezauto</LocalDebuggerWorkingDirectory>
     <LocalDebuggerCommand>$(SolutionDir)ezauto\$(TargetFileName)</LocalDebuggerCommand>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments />
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>$(SolutionDir)ezauto</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommand>$(SolutionDir)ezauto\$(TargetFileName)</LocalDebuggerCommand>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerCommandArguments>
     </LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>$(SolutionDir)ezauto</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommand>$(SolutionDir)ezauto\$(TargetFileName)</LocalDebuggerCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommandArguments />
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)ezauto</LocalDebuggerWorkingDirectory>
     <LocalDebuggerCommand>$(SolutionDir)ezauto\$(TargetFileName)</LocalDebuggerCommand>
