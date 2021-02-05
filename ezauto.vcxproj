@@ -191,6 +191,12 @@ copy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)ezauto\$(TargetName).pdb" /Y
     <ClInclude Include="src\settings_int.h" />
     <ClInclude Include="src\sys.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\icon_rc.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
