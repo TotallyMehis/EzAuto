@@ -30,8 +30,8 @@ private:
     offset_t m_offmovetype;
     offset_t m_offBUNNYJUMP_MAX_SPEED_FACTOR;
 
-    int m_fFlags;
-    int m_MoveType;
+    int32_t m_fFlags;
+    int32_t m_MoveType;
     float m_flBunnyHopSpeedFactor;
 
     bool m_bHoldingForWater;

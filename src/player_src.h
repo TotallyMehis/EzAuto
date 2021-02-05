@@ -35,8 +35,8 @@ private:
     offset_t m_offMoveType;
 
 
-    int m_fFlags;
-    int m_MoveType;
+    int32_t m_fFlags;
+    unsigned char m_MoveType;
 
     bool m_bHoldingForWater;
 };

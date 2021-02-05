@@ -56,7 +56,7 @@ bool CPlayer_GoldSrc::Init()
 {
     if ( m_flBunnyHopSpeedFactor >= 0.0f )
     {
-        bool res = g_Process.WriteMemory( (void*)( m_offBUNNYJUMP_MAX_SPEED_FACTOR ), (void*)( &m_flBunnyHopSpeedFactor ), sizeof( float ) );
+        bool res = g_Process.WriteMemory( (void*)( m_offBUNNYJUMP_MAX_SPEED_FACTOR ), (void*)( &m_flBunnyHopSpeedFactor ), sizeof( m_flBunnyHopSpeedFactor ) );
 
         if ( !res )
         {
@@ -89,14 +89,14 @@ bool CPlayer_GoldSrc::IsAlive() const
 
 bool CPlayer_GoldSrc::ReadFlags()
 {
-    return g_Process.ReadMemory( (void*)( m_offFlags ), &m_fFlags, sizeof( int ) );
+    return g_Process.ReadMemory( (void*)( m_offFlags ), &m_fFlags, sizeof( m_fFlags ) );
 }
 
 bool CPlayer_GoldSrc::ReadMoveType()
 {
     if ( m_offmovetype == NULL ) return true;
 
-    return g_Process.ReadMemory( (void*)( m_offmovetype ), &m_MoveType, sizeof( int ) );
+    return g_Process.ReadMemory( (void*)( m_offmovetype ), &m_MoveType, sizeof( m_MoveType ) );
 }
 
 void CPlayer_GoldSrc::Jump()
