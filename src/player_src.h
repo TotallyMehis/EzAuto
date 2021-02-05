@@ -22,13 +22,14 @@ public:
 private:
     bool IsAlive() const;
 
-    bool ReadLocalPlayer();
+    // Read the location of the local player data.
+    bool ReadLocalPlayerPointer();
     bool ReadFlags();
     bool ReadMoveType();
 
     offset_t m_offLocalPlayer;
 
-    offset_t m_offPlayerBase;
+    offset_t m_offLocalPlayerPointer;
 
     offset_t m_offFlags;
     offset_t m_offMoveType;

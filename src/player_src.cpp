@@ -15,7 +15,7 @@
 
 CPlayer_Source::CPlayer_Source()
 {
-    m_offPlayerBase = NULL;
+    m_offLocalPlayerPointer = NULL;
     m_offLocalPlayer = NULL;
 
     m_offFlags = NULL;
@@ -32,8 +32,12 @@ bool CPlayer_Source::ParseGameData( const CSettings_Section* data )
 {
     COffsetParser* parser = new COffsetParser();
 
-
-    m_offPlayerBase = parser->AddOffset( "PlayerBase", data->GetOptionValue( "Offset:PlayerBase" ) );
+    auto* pszLocalPlayerPointer = data->GetOptionValue( "Offset:LocalPlayerPointer" );
+    // Fallback to old value
+    if ( !pszLocalPlayerPointer )
+        pszLocalPlayerPointer = data->GetOptionValue( "Offset:PlayerBase" );
+    
+    m_offLocalPlayerPointer = parser->AddOffset( "LocalPlayerPointer", pszLocalPlayerPointer );
 
 
     m_offFlags = parser->AddOffset( "m_fFlags", data->GetOptionValue( "Offset:m_fFlags" ) );
@@ -45,7 +49,7 @@ bool CPlayer_Source::ParseGameData( const CSettings_Section* data )
     delete parser;
 
     // m_lifeState is not required.
-    return ( m_offPlayerBase != NULL && m_offFlags != NULL );
+    return ( m_offLocalPlayerPointer != NULL && m_offFlags != NULL );
 }
 
 bool CPlayer_Source::Init()
@@ -55,7 +59,7 @@ bool CPlayer_Source::Init()
 
 bool CPlayer_Source::Update()
 {
-    return ( ReadLocalPlayer() && ReadMoveType() );
+    return ( ReadLocalPlayerPointer() && ReadMoveType() );
 }
 
 bool CPlayer_Source::IsActive() const
@@ -68,9 +72,9 @@ bool CPlayer_Source::IsAlive() const
     return ( m_MoveType == MOVETYPE_WALK || m_MoveType == MOVETYPE_LADDER );
 }
 
-bool CPlayer_Source::ReadLocalPlayer()
+bool CPlayer_Source::ReadLocalPlayerPointer()
 {
-    return g_Process.ReadMemory( (void*)( m_offPlayerBase ), &m_offLocalPlayer, sizeof( offset_t ) );
+    return g_Process.ReadMemory( (void*)( m_offLocalPlayerPointer ), &m_offLocalPlayer, sizeof( m_offLocalPlayer ) );
 }
 
 bool CPlayer_Source::ReadMoveType()
