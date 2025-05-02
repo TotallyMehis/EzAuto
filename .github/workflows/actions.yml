@@ -1,0 +1,29 @@
+name: Build
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  build-windows:
+    name: Build (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Run CMake
+        run: |
+          $CommitHash = git rev-parse --short HEAD
+          cmake -B build -DEZAUTO_BUILD="-auto+$CommitHash"
+      - name: Build
+        run: msbuild build/ezauto.sln /P:Configuration=RelWithDebInfo
+      - name: Run tests
+        run: cd build && ctest
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-artifact
+          path: ezauto/*
