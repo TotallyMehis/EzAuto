@@ -7,6 +7,11 @@ int main( int argc, char* argv[] )
 {
     g_System.SetCmdLine( argv, argc );
 
+    bool started = g_Core.Start();
+    if ( !started )
+    {
+        return 0;
+    }
 
     CSystem::SetTitle( "EzAuto" );
 
@@ -18,9 +23,6 @@ int main( int argc, char* argv[] )
     {
         return CSystem::ExitWarning( 1, "Couldn't read game data from file '%s'! Exiting...\n", GAMEDATA_FILE );
     }
-
-
-    g_Core.Init();
 
     while ( true )
     {

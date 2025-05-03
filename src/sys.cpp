@@ -41,6 +41,11 @@ bool CSystem::IsProcessRunning()
     //return ( WaitForSingleObject( g_Process.GetProcess(), 0 ) == WAIT_TIMEOUT );
 }
 
+void CSystem::PrintSimple( const char* msg )
+{
+    std::cout << msg;
+}
+
 void CSystem::Print( const char* format, ... )
 {
     char msg[VA_BUFFER_SIZE];

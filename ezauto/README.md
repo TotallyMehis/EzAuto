@@ -15,3 +15,5 @@
 | -jumpkey <key>  | Override `settings.ini` jump key.           |
 | -verbose        | Turn on verbose logging.                    |
 | -dev            | Turn on developer logging. (more verbose)   |
+| -v, --version   | Display version.                            |
+| -h, --help      | Display this.                               |

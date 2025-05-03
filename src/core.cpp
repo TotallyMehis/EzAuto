@@ -15,9 +15,30 @@ CCore::CCore()
     m_flBunnyHopSpeedFactor = -1.0f;
 }
 
-void CCore::Init()
+bool CCore::Start()
 {
+    if ( g_System.HasCmdLine( "-v" ) || g_System.HasCmdLine( "--version" ) )
+    {
+        g_System.Print( "%s\n", EZAUTO_VERSION );
+        return false;
+    }
+
+    if ( g_System.HasCmdLine( "-h" ) || g_System.HasCmdLine( "--help" ) )
+    {
+        g_System.PrintSimple( 
+            "-pausekey <key>\t\tOverride settings.ini pause key.\n"
+            "-holdkey <key>\t\tOverride settings.ini hold key.\n"
+            "-jumpkey <key>\t\tOverride settings.ini jump key.\n"
+            "-verbose\t\tTurn on verbose logging.\n"
+            "-dev\t\t\tTurn on developer logging. (more verbose)\n"
+            "-v, --version\t\tDisplay version.\n"
+            "-h, --help\t\tDisplay this.\n"
+         );
+        return false;
+    }
+
     ReadSettings();
+    return true;
 }
 
 void CCore::ReadSettings()

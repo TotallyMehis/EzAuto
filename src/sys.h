@@ -27,6 +27,7 @@ public:
 
     static bool IsProcessRunning();
 
+    static void PrintSimple( const char* msg );
     static void Print( const char* format, ... );
     static void PrintVerbose( const char* format, ... );
     static void PrintDev( const char* format, ... );

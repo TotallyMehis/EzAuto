@@ -12,7 +12,7 @@ public:
     CCore();
     virtual ~CCore() {}
 
-    void Init();
+    bool Start();
     int ListenToProcess();
 
     float CS16_MaxSpeedFactor() const { return m_flBunnyHopSpeedFactor; }
