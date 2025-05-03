@@ -7,3 +7,4 @@ build/*
 ezauto/*.exe
 ezauto/*.pdb
 .vs
+.vscode
